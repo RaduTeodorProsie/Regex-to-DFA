@@ -17,4 +17,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run script
-        run: python3 AFD.py
+        run: python3 tester.py
