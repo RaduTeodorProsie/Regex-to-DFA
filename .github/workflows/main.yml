@@ -10,11 +10,14 @@ on:
 
 jobs:
   run-script:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      
+      - name: Install python
+        run: sudo apt install -y python3 
 
       - name: Run script
         run: python3 tester.py
