@@ -25,19 +25,23 @@ def insert_concatenation_operator(regex):
         if i + 1 < n and regex[i] in "*+?" and regex[i + 1].isalnum():
             result.append('.')
 
+        # — NEW — Add . between postfix operators and '(' (e.g., a*( -> a*.()
+        if i + 1 < n and regex[i] in "*+?" and regex[i + 1] == '(':
+            result.append('.')
+
     return ''.join(result)
+
 
 def regex_postfix(expression, precedence=None):
     if precedence is None:
         precedence = {
             '?': 4,
             '*': 3,
-            '+': 2,
+            '+': 3,   # you can bump '+' to the same level as '*'
             '.': 1,
             '|': 0,
-            '(': -69
+            '(': -1
         }
-
 
     expression = insert_concatenation_operator(expression)
     output, stack = [], []
@@ -46,17 +50,18 @@ def regex_postfix(expression, precedence=None):
             output.append(sym)
         else:
             if sym == '(':
-                stack.append('(')
+                stack.append(sym)
             elif sym == ')':
-                while len(stack) != 0 and stack[-1] != '(':
+                while stack and stack[-1] != '(':
                     output.append(stack.pop())
-                if len(stack) == 0:
-                    raise RuntimeError("Invalid regex")
-                stack.pop()
+                stack.pop()  # discard '('
             else:
-                while len(stack) != 0 and precedence[stack[-1]] > precedence[sym]:
+                # pop higher‑precedence operators first
+                while stack and precedence[stack[-1]] >= precedence[sym]:
                     output.append(stack.pop())
                 stack.append(sym)
-    while len(stack) != 0:
+
+    while stack:
         output.append(stack.pop())
+
     return output
