@@ -9,7 +9,6 @@ test_id = 0
 for test in data:
     dfa = regex_to_dfa.regex_to_dfa(test["regex"])
     correct = True; print()
-    print(test["regex"])
     for unit in test["test_strings"]:
         string, expected = unit["input"], unit["expected"]
         if dfa.accepts(string) != expected:
