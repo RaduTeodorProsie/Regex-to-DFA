@@ -1,6 +1,6 @@
 import json
 import regex_to_dfa
-from regex_lib import regex_postfix
+import sys
 
 with open("tests.json", "r") as tests:
     data = json.load(tests)
@@ -19,6 +19,8 @@ for test in data:
         print(f"\033[91m❌ Test {test_id} wrong!\033[0m")
     else:
         print(f"\033[92m✅ Test {test_id} correct!\033[0m")
+    if not correct:
+        sys.exit(1)
 
 
 
