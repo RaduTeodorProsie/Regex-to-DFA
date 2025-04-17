@@ -5,7 +5,7 @@ from regex_lib import regex_postfix
 with open("tests.json", "r") as tests:
     data = json.load(tests)
 
-test_id = -1
+test_id = 0
 for test in data:
     dfa = regex_to_dfa.regex_to_dfa(test["regex"])
     correct = True; print()
