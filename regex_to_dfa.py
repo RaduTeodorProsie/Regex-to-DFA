@@ -34,11 +34,9 @@ def regex_to_dfa(regex):
             stack.append(automat.AF(a.states | b.states | {created}, a.alphabet | b.alphabet, transitions, created, a.final_states | b.final_states))
             created += 1
 
-    #print(stack[0])
     stack[0].eliminate_epsilon()
-    #print(stack[0])
     stack[0].convert_to_dfa()
-    #print(stack[0])
+    
     return stack[0]
 
 
