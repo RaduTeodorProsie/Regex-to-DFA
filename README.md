@@ -1,14 +1,14 @@
 # Regex to DFA project
 - This project contains 4 python modules:
-  - automat.py : contains a finite automata class
-  - regex_lib.py : used for handling regular expressions
-  - regex_to_dfa.py : used for taking a regex and turns it to a dfa
-  - tester.py : used for testing the automata converter on the tests in tests.json
+  - `automat.py` : contains a finite automata class
+  - `regex_lib.py` : used for handling regular expressions
+  - `regex_to_dfa.py` : used for taking a regex and turns it to a dfa
+  - `tester.py` : used for testing the automata converter on the tests in tests.json
 
 ## Automata class
 - Has a basic constructor, as well as some interesting methods. The most important are :
-  - eliminate_epsilon() : converts an epsilon-nfa to an nfa
-  - convert_to_dfa() : converts an nfa (without epsilon transitions!) to a dfa by subset construction
+  - `eliminate_epsilon()` : converts an epsilon-nfa to an nfa
+  - `convert_to_dfa()` : converts an nfa (without epsilon transitions!) to a dfa by subset construction
 - If you want epsilon transitions, you need to use the symbol "".
 - If you want to check if the automata accepts a given string, you NEED to remove all epsilon transitions by calling the above method
 
