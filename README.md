@@ -46,7 +46,7 @@ traverse the regex in postfix order. When we encounter :
   - A symbol : I push the NFA that only accepts that symbol onto the stack
   - `?` : I put epsilon transitions from the starting state of the NFA on top of the stack to all its final states.
   - `+` : I put epsilon transitions from the ending states of the NFA on top of the stack to its starting state
-  - `*` : Do the operations for '+' and '?'
+  - `*` : Do the operations for `+` and `?`
   - `.` : Let A and B be the NFAs second from the top and topmost respectively. I add an epsilon transition from the final states of A to the starting state of B, and then I unmark A's final states as final.
   - `|` : Create a new start state. Put epsilon transitions from it to the starting states of A and B. 
 
